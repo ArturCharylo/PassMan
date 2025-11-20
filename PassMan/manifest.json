@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "ColorSwap",
+  "name": "PassMan",
   "version": "1.0",
-  "description": "Change the background color of the current tab to light blue.",
+  "description": "Store and autofill your passwords securely.",
   "permissions": ["scripting", "activeTab"],
   "host_permissions": ["<all_urls>"],
   "background": {
@@ -10,6 +10,6 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "ColorSwap"
+    "default_title": "PassMan"
   }
 }
