@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "PassMan",
+  "name": "Cryptono",
   "version": "1.0",
   "description": "Store and autofill your passwords securely.",
   "permissions": ["storage", "scripting", "activeTab"],
@@ -10,7 +10,7 @@
   },
   "action": {
     "default_popup": "popup.js",
-    "default_title": "PassMan"
+    "default_title": "Cryptono"
   },
   "content_scripts": [
     {
