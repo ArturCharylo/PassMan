@@ -4,11 +4,9 @@
   "description": "This project will be an open-source password manager in an chrome extension",
   "main": "index.js",
   "scripts": {
-   "dev": "vite",
-   "build": "vite build",
-   "preview": "vite preview"
+    "build": "vite build && copy src\\manifest.json dist\\",
+    "dev": "vite"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ArturCharylo/Cryptono.git"
@@ -22,13 +20,12 @@
   },
   "homepage": "https://github.com/ArturCharylo/C#readme",
   "devDependencies": {
+    "@crxjs/vite-plugin": "^2.2.1",
+    "@types/chrome": "^0.1.31",
     "@types/node": "^24.10.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "vite": "^7.2.4",
     "vite-plugin-static-copy": "^3.1.4"
-  },
-  "dependencies": {
-    "@types/chrome": "^0.1.31"
   }
 }
