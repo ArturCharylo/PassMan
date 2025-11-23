@@ -8,13 +8,27 @@ export default defineConfig({
       input: {
         background: resolve(__dirname, 'src/background.ts'),
         contentScript: resolve(__dirname, 'src/contentScript.ts'),
-        popup: resolve(__dirname, 'src/popup.ts'), // ← DODAJ TUTAJ
-        popupHTML: resolve(__dirname, 'src/popup.html')
+        popup: resolve(__dirname, 'src/popup.ts'),
+        main: resolve(__dirname, 'src/main.ts'),
       },
       output: {
         entryFileNames: '[name].js',
         chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]'
+        assetFileNames: (assetInfo) => {
+          const extType = assetInfo.name?.split('.').at(1) ?? ''
+          
+          if (extType === 'css') {
+            return 'styles/[name].[ext]'
+          }
+          if (['png', 'jpg', 'jpeg', 'gif', 'svg'].includes(extType)) {
+            return 'assets/[name].[ext]'
+          }
+          if (extType === 'html') {
+            return '[name].[ext]'
+          }
+          
+          return '[name].[ext]'
+        }
       }
     },
     outDir: 'dist'
@@ -23,7 +37,7 @@ export default defineConfig({
     {
       name: 'copy-extension-files',
       closeBundle() {
-        const filesToCopy = ['manifest.json', 'popup.html']
+        const filesToCopy = ['manifest.json', 'popup.html', 'passwords.html']
         
         filesToCopy.forEach(file => {
           const src = resolve(__dirname, 'src', file)
@@ -33,6 +47,21 @@ export default defineConfig({
             console.log(`✓ ${file} copied to dist/`)
           }
         })
+
+        const stylesDir = resolve(__dirname, 'src/styles')
+        const distStylesDir = resolve(__dirname, 'dist/styles')
+        if (fs.existsSync(stylesDir)) {
+          if (!fs.existsSync(distStylesDir)) {
+            fs.mkdirSync(distStylesDir, { recursive: true })
+          }
+          const styleFiles = fs.readdirSync(stylesDir)
+          styleFiles.forEach(file => {
+            const src = resolve(stylesDir, file)
+            const dest = resolve(distStylesDir, file)
+            fs.copyFileSync(src, dest)
+            console.log(`✓ styles/${file} copied to dist/styles/`)
+          })
+        }
       }
     }
   ]
