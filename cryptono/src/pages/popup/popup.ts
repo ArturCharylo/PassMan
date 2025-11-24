@@ -1,4 +1,5 @@
 import '../../styles/popup.css'
+import loginValidation from '../../validation/validate';
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form') as HTMLFormElement;
@@ -44,10 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
 async function authenticate(username: string, password: string): Promise<boolean> {
     return new Promise((resolve) => {
         setTimeout(() => {
-            if (username && password) {
+            if (loginValidation(username, password).every(v => v.value.match(v.regex))){
                 resolve(true);
             } 
             else{
+                loginValidation(username, password).forEach(v => {
+                    if (!v.value.match(v.regex)){
+                        alert(v.message);
+                    }
+                });
                 resolve(false);
             }
         }, 1000);
