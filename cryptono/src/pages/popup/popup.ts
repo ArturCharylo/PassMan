@@ -49,6 +49,11 @@ async function authenticate(username: string, password: string): Promise<boolean
                 resolve(true);
             } 
             else{
+                loginValidation(username, password).forEach(v => {
+                    if (!v.value.match(v.regex)){
+                        alert(v.message);
+                    }
+                });
                 resolve(false);
             }
         }, 1000);
