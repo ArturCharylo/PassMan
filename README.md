@@ -27,7 +27,7 @@ The goal of this project is to provide a simple, privacy-friendly tool for stori
 | Extension Backend | TypeScript |
 | UI | HTML, CSS, TS |
 | Encryption | WebCrypto API |
-| Storage | Chrome Storage (sync/local) |
+| Storage | IndexedDB |
 
 ---
 
