@@ -1,5 +1,6 @@
 export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[\w@$!%*?&]{8,}$/;
 export const nameRegex = /^[A-Za-z\s'-]+$/;
+export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 interface Validation {
     value: string;
@@ -25,4 +26,28 @@ function loginValidation(username: string, password: string): Validation[] {
     ];
 }
 
-export default loginValidation;
+function registerValidation(email: string, username: string, password:string): Validation[] {
+    return [
+        {
+            value: username,
+            regex: nameRegex,
+            fieldName: "First name",
+            message: "Wrong first name format. Only letters, spaces, apostrophes, and hyphens are allowed.",
+        },
+        {
+            value: password,
+            regex: passwordRegex,
+            fieldName: "Password",
+            message: "Wrong password format. Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.",
+        },
+        {
+            value: email,
+            regex: emailRegex,
+            fieldName: "Email",
+            message: "Wrong email format. Please make sure your email is valid.",
+        },
+    ]
+}
+
+export { loginValidation };
+export { registerValidation };

@@ -1,5 +1,5 @@
 import '../../styles/popup.css'
-import loginValidation from '../../validation/validate';
+import { loginValidation } from '../../validation/validate';
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form') as HTMLFormElement;

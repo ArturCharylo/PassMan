@@ -1,4 +1,4 @@
-import loginValidation from '../../validation/validate';
+import { registerValidation } from '../../validation/validate';
 
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form') as HTMLFormElement;
@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const username = (document.getElementById('username') as HTMLInputElement)?.value;
         const password = (document.getElementById('password') as HTMLInputElement)?.value;
+        const email = (document.getElementById('email') as HTMLInputElement)?.value;
         const confrimPassword = (document.getElementById('confirm_password') as HTMLInputElement)?.value;
 
         if (!username || !password || !confrimPassword){
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         registerBtn.disabled = true;
 
         try {
-            const registrationSuccess = await authorize(username, password);
+            const registrationSuccess = await authorize(email, username, password);
             
             if (registrationSuccess) {
                 chrome.tabs.create({
@@ -45,14 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
             registerBtn.disabled = false;
         }      
     });
-    async function authorize (username: string, password: string): Promise<boolean> {
+    async function authorize (email: string, username: string, password: string): Promise<boolean> {
     return new Promise((resolve) => {
         setTimeout(() => {
-            if (loginValidation(username, password).every(v => v.value.match(v.regex))){
+            if (registerValidation(email, username, password).every(v => v.value.match(v.regex))){
                 resolve(true);
             }
             else{
-                loginValidation(username, password).forEach(v => {
+                registerValidation(email, username, password).forEach(v => {
                     if (!v.value.match(v.regex)){
                         error += v.message + '\n';
                         
