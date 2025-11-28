@@ -41,7 +41,7 @@ export default defineConfig({
     {
       name: 'copy-extension-files',
       closeBundle() {
-        const filesToCopy = ['manifest.json', 'pages/popup/popup.html', 'pages/passwords/passwords.html', 'pages/register/register.html', 'pages/login/login.html']
+        const filesToCopy = ['manifest.json', 'pages/passwords/passwords.html', 'pages/register/register.html', 'pages/login/login.html']
         
         filesToCopy.forEach(file => {
           const src = resolve(__dirname, 'src', file)
@@ -51,6 +51,17 @@ export default defineConfig({
             console.log(`✓ ${file} copied to dist/`)
           }
         })
+
+        // Handle popup.html separately to replace .ts with .js
+        const popupHtmlSrc = resolve(__dirname, 'src/pages/popup/popup.html')
+        const popupHtmlDest = resolve(__dirname, 'dist/popup.html')
+        if (fs.existsSync(popupHtmlSrc)) {
+            let content = fs.readFileSync(popupHtmlSrc, 'utf-8')
+            content = content.replace('src="popup.ts"', 'src="popup.js"')
+            content = content.replace('href="../../styles/popup.css"', 'href="styles/popup.css"')
+            fs.writeFileSync(popupHtmlDest, content)
+            console.log(`✓ popup.html copied and transformed to dist/`)
+        }
 
         const stylesDir = resolve(__dirname, 'src/styles')
         const distStylesDir = resolve(__dirname, 'dist/styles')
