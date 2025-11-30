@@ -18,6 +18,18 @@ export class Passwords {
 
                 <div style="text-align: center; color: white;">
                     <h1>You successfully logged in!</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Site</td>
+                                <td>Password</td>
+                                <td>Show/Hide</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr></tr>
+                        </tbody>
+                    </table>
                     <button id="logout-btn" class="login-btn" style="background: rgba(255, 255, 255, 0.2); margin-top: 20px;">Logout</button>
                 </div>
 
