@@ -1,4 +1,6 @@
 import '../styles/popup.css';
+import '../styles/App.css';
+import '../styles/passwords.css';
 import { Router } from '../utils/router';
 import { Login } from '../components/Login';
 import { Register } from '../components/Register';

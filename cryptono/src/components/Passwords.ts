@@ -18,18 +18,24 @@ export class Passwords {
 
                 <div style="text-align: center; color: white;">
                     <h1>You successfully logged in!</h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Site</td>
-                                <td>Password</td>
-                                <td>Show/Hide</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr></tr>
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table class='password-table'>
+                            <thead class='password-table-head'>
+                                <tr>
+                                    <td>Site</td>
+                                    <td>Password</td>
+                                    <td>Show/Hide</td>
+                                </tr>
+                            </thead>
+                            <tbody class='password-table-body'>
+                                <tr>
+                                    <td>exmaple.com</td>
+                                    <td class='password-cell'>••••••••</td>
+                                    <td><button class='toggle-password-btn'>Show</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <button id="logout-btn" class="login-btn" style="background: rgba(255, 255, 255, 0.2); margin-top: 20px;">Logout</button>
                 </div>
 
