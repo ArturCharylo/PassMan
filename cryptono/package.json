@@ -4,7 +4,7 @@
   "description": "This project will be an open-source password manager in an chrome extension",
   "main": "index.js",
   "scripts": {
-    "build": "vite build && copy src\\manifest.json dist\\",
+    "build": "vite build",
     "dev": "vite"
   },
   "repository": {
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/ArturCharylo/C#readme",
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.2.1",
-    "@types/chrome": "^0.1.31",
+    "@types/chrome": "^0.1.32",
     "@types/node": "^24.10.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",

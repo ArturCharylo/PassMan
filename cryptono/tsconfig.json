@@ -1,28 +1,31 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    /* Target & Module */
+    "target": "ESNext",
     "module": "ESNext",
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "noImplicitAny": false,
-    "lib": ["DOM", "ES2020"],
-    "isolatedModules": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "useDefineForClassFields": true,
 
     /* Bundler mode */
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "noEmit": true,
 
-    /* Linting */
+    /* Linting & Strictness */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "verbatimModuleSyntax": true,
+
+    /* Key for extension and vite*/
+    "types": ["chrome", "vite/client"],
+
+    /* Performance */
+    "skipLibCheck": true
   },
   "include": ["src"]
 }

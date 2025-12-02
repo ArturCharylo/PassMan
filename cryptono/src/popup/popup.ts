@@ -1,8 +1,10 @@
-import '../../styles/popup.css';
-import { Router } from '../../utils/router';
-import { Login } from '../../components/Login';
-import { Register } from '../../components/Register';
-import { Passwords } from '../../components/Passwords';
+import '../styles/popup.css';
+import '../styles/App.css';
+import '../styles/passwords.css';
+import { Router } from '../utils/router';
+import { Login } from '../components/Login';
+import { Register } from '../components/Register';
+import { Passwords } from '../components/Passwords';
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('app') as HTMLElement;

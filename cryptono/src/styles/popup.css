@@ -1,20 +1,10 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-}
-
 .container {
     padding: 24px;
+    min-width: 320px; 
     min-height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 20px; 
 }
 
 /* Header Styles */
@@ -134,7 +124,7 @@ body {
     padding: 14px 24px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    background: linear-gradient(135deg, rgba(41, 40, 40, 0.2) 0%, rgba(59, 57, 57, 0.1) 100%);
     color: white;
     font-size: 1rem;
     font-weight: 600;
@@ -147,8 +137,8 @@ body {
 
 .login-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(238, 90, 36, 0.3);
-    background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%);
+    box-shadow: 0 8px 25px rgba(117, 227, 255, 0.3);
+    background: linear-gradient(135deg, rgba(59, 57, 57, 0.1) 0%, rgba(41, 40, 40, 0.2) 100%);
 }
 
 .login-btn:active {
