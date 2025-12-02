@@ -124,7 +124,7 @@
     padding: 14px 24px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    background: linear-gradient(135deg, rgba(41, 40, 40, 0.2) 0%, rgba(59, 57, 57, 0.1) 100%);
     color: white;
     font-size: 1rem;
     font-weight: 600;
@@ -137,8 +137,8 @@
 
 .login-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(238, 90, 36, 0.3);
-    background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%);
+    box-shadow: 0 8px 25px rgba(117, 227, 255, 0.3);
+    background: linear-gradient(135deg, rgba(59, 57, 57, 0.1) 0%, rgba(41, 40, 40, 0.2) 100%);
 }
 
 .login-btn:active {
