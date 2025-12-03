@@ -1,20 +1,8 @@
 /*App.css file, global styles should be stored here, for example style variables*/
 /* Scrollbar styles */
 ::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1); 
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2); 
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.4); 
+    visibility: hidden;
+    width: 0px;
 }
 
 /* Body and app styles*/
