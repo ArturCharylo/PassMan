@@ -32,17 +32,17 @@ export class Passwords {
                                     <th>Site</th>
                                     <th>Username</th>
                                     <th>Password</th>
-                                    <th style="text-align: right;">Action</th>
+                                    <th class="text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="password-list">
-                                <tr><td colspan="4" style="text-align:center; padding: 30px; opacity: 0.7;">Loading vault...</td></tr>
+                                <tr><td colspan="4" class="state-message">Loading vault...</td></tr>
                             </tbody>
                         </table>
                     </div>
                     
-                    <div style="text-align: center; margin-top: 24px;">
-                        <button id="logout-btn" class="login-btn" >Logout</button>
+                    <div class="logout-container">
+                        <button id="logout-btn" class="login-btn">Logout</button>
                     </div>
                 </div>
                 
@@ -92,22 +92,23 @@ export class Passwords {
             const items = await storageService.getAllItems();
             
             if (items.length === 0) {
-                listContainer.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 30px; opacity: 0.6;">No passwords saved yet.</td></tr>';
+                listContainer.innerHTML = '<tr><td colspan="4" class="state-message empty">No passwords saved yet.</td></tr>';
                 return;
             }
 
             listContainer.innerHTML = items.map(item => `
                 <tr>
-                    <td><span style="font-weight: 500;">${item.url}</span></td>
-                    <td style="opacity: 0.8;">${item.username}</td>
+                    <td><span class="site-url">${item.url}</span></td>
+                    <td class="username-cell">${item.username}</td>
                     <td>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <span class="password-text" style="display: none; font-family: monospace;">${item.password}</span>
+                        <div class="password-wrapper" id="pwd-wrapper-${item.id}">
+                            <span class="password-text">${item.password}</span>
                             <span class="password-mask">••••••••</span>
                         </div>
                     </td>
-                    <td style="text-align: right;">
-                        <button class="toggle-btn" data-id="${item.id}">Show</button>
+                    <td class="text-right">
+                        <button class="action-btn toggle-btn" data-id="${item.id}">Show</button>
+                        <button class="action-btn delete-btn" data-id="${item.id}">Delete</button>
                     </td>
                 </tr>
             `).join('');
@@ -116,27 +117,40 @@ export class Passwords {
             document.querySelectorAll('.toggle-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const button = e.target as HTMLButtonElement;
-                    const row = button.closest('tr');
-                    const textSpan = row?.querySelector('.password-text') as HTMLElement;
-                    const maskSpan = row?.querySelector('.password-mask') as HTMLElement;
+                    const id = button.getAttribute('data-id');
+                    const wrapper = document.getElementById(`pwd-wrapper-${id}`);
 
-                    if (textSpan.style.display === 'none') {
-                        textSpan.style.display = 'inline';
-                        maskSpan.style.display = 'none';
-                        button.textContent = 'Hide';
-                        button.style.borderColor = 'rgba(255, 255, 255, 0.5)'; // Active state visual feedback
-                    } else {
-                        textSpan.style.display = 'none';
-                        maskSpan.style.display = 'inline';
-                        button.textContent = 'Show';
-                        button.style.borderColor = ''; // Reset border
+                    if (wrapper) {
+                        // Toggle logic using CSS classes instead of inline styles
+                        wrapper.classList.toggle('revealed');
+                        const isRevealed = wrapper.classList.contains('revealed');
+                        
+                        button.textContent = isRevealed ? 'Hide' : 'Show';
+                        
+                        if (isRevealed) {
+                            button.classList.add('active');
+                        } else {
+                            button.classList.remove('active');
+                        }
                     }
+                });
+            });
+
+            // Event listeners for delete buttons
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const button = e.target as HTMLButtonElement;
+                    const id = button.getAttribute('data-id');
+                    console.log(`Delete requested for item: ${id}`);
+                    storageService.deleteItem(id!).then(() => {
+                        this.loadItems();
+                    })
                 });
             });
 
         } catch (error) {
             console.error(error);
-            listContainer.innerHTML = '<tr><td colspan="4" style="color: #ff6b6b; text-align:center; padding: 20px;">Error loading vault.</td></tr>';
+            listContainer.innerHTML = '<tr><td colspan="4" class="error-message">Error loading vault.</td></tr>';
         }
     }
 }
