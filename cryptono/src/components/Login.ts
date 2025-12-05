@@ -40,8 +40,8 @@ export class Login {
 
                 <div class="footer">
                     <p class="security-note">🔐 Encrypted & Secure</p>
-                    <p style="margin-top: 10px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.8);">
-                        Don't have an account? <a href="#" id="go-to-register" style="color: white; text-decoration: underline;">Register</a>
+                    <p class="security-note">
+                        Don't have an account? <a href="#" id="go-to-register" class="security-note-link">Register</a>
                     </p>
                 </div>
             </div>
