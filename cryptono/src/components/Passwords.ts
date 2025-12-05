@@ -32,7 +32,7 @@ export class Passwords {
                                     <th>Site</th>
                                     <th>Username</th>
                                     <th>Password</th>
-                                    <th class="text-right">Action</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody id="password-list">
@@ -141,7 +141,7 @@ export class Passwords {
                 btn.addEventListener('click', (e) => {
                     const button = e.target as HTMLButtonElement;
                     const id = button.getAttribute('data-id');
-                    console.log(`Delete requested for item: ${id}`);
+                    if (confirm("Are you sure you want to delete this record?"))
                     storageService.deleteItem(id!).then(() => {
                         this.loadItems();
                     })
